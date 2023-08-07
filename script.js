@@ -17,6 +17,7 @@ btn.addEventListener("click", () => {
 
     context.drawImage(video, 0, 0, width, height)
     download.setAttribute("href", canvas.toDataURL())
+    download.setAttribute("download", Date.now() + ".png")
 
     download.click()
 })
