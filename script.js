@@ -6,7 +6,7 @@ if (navigator.mediaDevices) {
     navigator.mediaDevices.enumerateDevices().then(devices => {
         const [camera] = devices.filter(device => device.kind === "videoinput")
 
-        navigator.mediaDevices.getUserMedia({ video: { deviceId: camera.deviceId, facingMode: "environment" } }).then(stream => {
+        navigator.mediaDevices.getUserMedia({ video: { deviceId: camera.deviceId, facingMode: "user" } }).then(stream => {
             video.srcObject = stream
         })
     })
