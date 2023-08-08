@@ -3,12 +3,16 @@ const video = document.querySelector("video"),
     download = document.querySelector(".download")
 
 if (navigator.mediaDevices) {
-    navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
-        video.srcObject = stream
+    navigator.mediaDevices.enumerateDevices().then(devices => {
+        const [camera] = devices.filter(device => device.kind === "videoinput")
+
+        navigator.mediaDevices.getUserMedia({ video: { deviceId: camera.deviceId, facingMode: "environment" } }).then(stream => {
+            video.srcObject = stream
+        })
     })
 }
 
-btn.addEventListener("click", () => {
+capture.addEventListener("click", () => {
     let width = 500, height = 650
     canvas.width = width
     canvas.height = height
